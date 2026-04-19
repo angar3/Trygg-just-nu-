@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Trygg just nu – swipe</title>
+<title>Trygg just nu – stabil version</title>
+
 <style>
 :root{
   --ink:#1d2440;
@@ -16,7 +17,6 @@
   --greenSoft:#e8f8ee;
   --yellowSoft:#fff4d7;
   --redSoft:#ffe9ee;
-  --purple:#b48cff;
   --purpleSoft:#f3ecff;
   --pinkSoft:#ffeef5;
 }
@@ -27,11 +27,7 @@ html,body{
   margin:0;height:100%;
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   color:var(--ink);
-  background:
-    radial-gradient(circle at 12% 10%, rgba(170,206,255,.75), transparent 24%),
-    radial-gradient(circle at 84% 18%, rgba(245,191,255,.55), transparent 24%),
-    radial-gradient(circle at 30% 82%, rgba(188,248,218,.45), transparent 20%),
-    linear-gradient(180deg,#f8f7ff,#eef3ff 55%,#fbfcff);
+  background: linear-gradient(180deg,#f8f7ff,#eef3ff);
 }
 
 body{overflow:hidden}
@@ -42,9 +38,7 @@ a{text-decoration:none;color:inherit}
   height:100dvh;
   display:flex;
   overflow-x:auto;
-  overflow-y:hidden;
   scroll-snap-type:x mandatory;
-  scroll-behavior:smooth;
   -webkit-overflow-scrolling:touch;
 }
 
@@ -52,168 +46,189 @@ a{text-decoration:none;color:inherit}
   flex:0 0 100%;
   height:100dvh;
   scroll-snap-align:start;
-  padding:18px 16px 24px;
+  padding:18px 16px;
 }
 
 .shell{max-width:440px;margin:0 auto;height:100%;display:flex;flex-direction:column;}
 
-.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
 
 .circle{
-  width:56px;height:56px;border-radius:50%;
+  width:52px;height:52px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  background:rgba(255,255,255,.68);
-  border:1px solid rgba(255,255,255,.85);
-  box-shadow:var(--shadow2);
-  backdrop-filter:blur(14px);
-  font-size:26px;font-weight:900;color:#2a3157;
+  background:#fff;
+  border:1px solid #ddd;
 }
 
-.brand{flex:1;text-align:center;padding:0 10px;}
-.brand .main{font-size:28px;font-weight:900;letter-spacing:-.05em;line-height:1;}
-.brand .sub{margin-top:5px;color:var(--muted);font-size:15px;font-weight:700;}
+.brand{text-align:center;flex:1}
+
+.brand .main{font-size:24px;font-weight:900}
 
 .screen{
   flex:1;
-  border-radius:38px;
-  background:rgba(255,255,255,.56);
-  border:1px solid rgba(255,255,255,.8);
-  backdrop-filter:blur(18px);
-  box-shadow:var(--shadow);
-  padding:22px;
+  background:#fff;
+  border-radius:28px;
+  padding:18px;
   overflow:auto;
+  box-shadow:var(--shadow);
 }
-
-.badge{display:inline-flex;align-items:center;gap:8px;padding:10px 15px;border-radius:999px;font-size:14px;font-weight:900;background:var(--purpleSoft);color:#6a5ee8;}
-.badge.green{background:var(--greenSoft);color:#2d6d4b}
-.badge.yellow{background:var(--yellowSoft);color:#8b6720}
-.badge.red{background:var(--redSoft);color:#9a3f52}
-.badge.pink{background:var(--pinkSoft);color:#b14d73}
-
-.hero{margin:16px 0 10px;font-size:54px;line-height:.95;letter-spacing:-.07em;font-weight:900;}
-.title{margin:10px 0 8px;font-size:36px;line-height:1.02;letter-spacing:-.05em;font-weight:900;}
-.p{margin:0 0 16px;color:var(--muted);font-size:18px;line-height:1.42;font-weight:500;}
-
-.note{margin:16px 0;padding:18px;border-radius:24px;font-size:17px;line-height:1.35;font-weight:900;box-shadow:var(--shadow2);}
-.note.green{background:linear-gradient(180deg,#edf9f1,#e4f5ea);color:#245640}
-.note.yellow{background:linear-gradient(180deg,#fff8e9,#fff0cf);color:#77591d}
-.note.red{background:linear-gradient(180deg,#fff1f4,#ffe6ea);color:#8d394a}
-
-.stack{display:grid;gap:14px}
 
 .card,.item,.navbtn{
-  display:block;border-radius:28px;background:var(--white2);
-  border:1px solid var(--line);box-shadow:var(--shadow2);
+  display:block;
+  border-radius:20px;
+  padding:14px;
+  border:1px solid var(--line);
+  background:#fff;
+  margin-bottom:10px;
 }
 
-.card{padding:18px}
-
-.row{display:flex;gap:14px;align-items:flex-start}
-
-.icon{width:56px;height:56px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:28px;}
-
-.ic-home{background:#eef0ff}
-.ic-avd{background:#e9f8ee}
-.ic-yellow{background:#fff6de}
-.ic-red{background:#ffecef}
-.ic-purple{background:#f3ecff}
-
-.txt strong{display:block;font-size:29px;line-height:1.03;letter-spacing:-.05em}
-.txt span{display:block;margin-top:7px;color:var(--muted);font-size:17px;line-height:1.35}
-
-.arrow{margin-left:auto;color:#b4bdd9;font-size:30px;font-weight:900}
-
-.help{
-  display:block;text-align:center;margin-top:18px;padding:24px 18px 18px;border-radius:34px;
-  background:linear-gradient(135deg,var(--blue),var(--purple));
-  color:#fff;font-size:28px;font-weight:900;
+.input{
+  width:100%;
+  padding:12px;
+  margin:6px 0;
+  border-radius:14px;
+  border:1px solid #ddd;
 }
 
-.help small{display:block;margin-top:6px;font-size:14px;font-weight:800;opacity:.95}
-
-.list{display:grid;gap:11px}
-.item{padding:16px;font-size:18px;font-weight:800}
-
-.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
-.navbtn{text-align:center;padding:18px 12px;font-size:18px;font-weight:900}
-
-.input{width:100%;padding:16px;border-radius:22px;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow2);font-size:16px;margin:9px 0}
-
-.footer{text-align:center;color:var(--muted);font-size:14px;font-weight:700;margin-top:12px}
-
-.calllinks{display:grid;gap:10px;margin-top:14px}
+button{
+  width:100%;
+  padding:14px;
+  border-radius:16px;
+  border:none;
+  background:var(--blue);
+  color:#fff;
+  font-weight:800;
+}
 
 .calllink{
-  display:block;text-align:center;padding:16px 14px;border-radius:22px;
-  background:#fff;border:1px solid var(--line);box-shadow:var(--shadow2);
-  font-size:17px;font-weight:900;
+  display:block;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:14px;
+  margin-top:8px;
 }
 
-.calllink small{display:block;margin-top:4px;color:var(--muted);font-size:13px;font-weight:700}
-.calllink.disabled{opacity:.55;pointer-events:none}
-
-.pages::-webkit-scrollbar,.screen::-webkit-scrollbar{display:none}
-.pages,.screen{scrollbar-width:none}
-
-@media (max-width:390px){
-  .hero{font-size:47px}
-  .txt strong{font-size:26px}
-  .help{font-size:24px}
-}
+.disabled{opacity:.5;pointer-events:none}
 </style>
 </head>
 
 <body>
 
 <div class="pages">
-<!-- ALLA SINA SIDA-KODER ÄR BEVARADE OCH SAMMA -->
-<!-- (start, hemma, avdelning, krisplan osv exakt som du skickade) -->
-<!-- jag har inte ändrat innehåll -->
 
-<!-- ====== START OF SCRIPT ====== -->
+<!-- START -->
+<section class="page">
+<div class="shell">
+
+<div class="topbar">
+<a class="circle" href="#krisplan">☰</a>
+<div class="brand"><div class="main">Trygg just nu</div></div>
+<a class="circle" href="#hemma">›</a>
+</div>
+
+<div class="screen">
+<h2>Hur känns det?</h2>
+
+<a class="card" href="#hemma">🏠 Hemma</a>
+<a class="card" href="#avdelning">🏥 Avdelning</a>
+<a class="card" href="#krisplan">📝 Krisplan</a>
+
+</div>
+</div>
+</section>
+
+<!-- HEMMA -->
+<section class="page" id="hemma">
+<div class="shell">
+<div class="topbar">
+<a class="circle" href="#start">‹</a>
+<div class="brand"><div class="main">Hemma</div></div>
+<a class="circle" href="#krisplan">›</a>
+</div>
+
+<div class="screen">
+<a class="card" href="#krisplan">Öppna krisplan</a>
+</div>
+</div>
+</section>
+
+<!-- KRISPLAN -->
+<section class="page" id="krisplan">
+<div class="shell">
+<div class="topbar">
+<a class="circle" href="#start">‹</a>
+<div class="brand"><div class="main">Krisplan</div></div>
+<a class="circle" href="#start">⌂</a>
+</div>
+
+<div class="screen">
+
+<input id="psykiakuten" class="input" placeholder="Psykiakuten nummer">
+<input id="narstaende" class="input" placeholder="Närstående">
+
+<button onclick="savePlan()">Spara</button>
+
+<a id="callPsykiakuten" class="calllink disabled" href="#" onclick="dial('psykiakuten');return false;">Ring psykiakuten</a>
+<a id="callNarstaende" class="calllink disabled" href="#" onclick="dial('narstaende');return false;">Ring närstående</a>
+
+</div>
+</div>
+</section>
+
+</div>
+
 <script>
 (function(){
-  const fieldIds = [
-    'ort','mobilaTeamet','psykiakuten','narstaende',
-    'hjalperMest','gulZonHjalp','akutHjalp'
-  ];
 
-  function sanitizePhone(v){
-    return (v||'').replace(/[^\d+]/g,'');
-  }
+const fields = ["psykiakuten","narstaende"];
 
-  window.dialStoredNumber = function(id){
-    const el = document.getElementById(id);
-    const raw = el ? el.value : (localStorage.getItem('trygg_'+id)||'');
-    const clean = sanitizePhone(raw);
-    if(clean) window.location.href = 'tel:'+clean;
-    else alert('Lägg in nummer först');
-  }
+function get(id){
+  return document.getElementById(id);
+}
 
-  function refreshCallLinks(){}
+function clean(v){
+  return (v||"").replace(/[^\d+]/g,"");
+}
 
-  function loadPlan(){
-    fieldIds.forEach(id=>{
-      const el=document.getElementById(id);
-      if(el){
-        el.value = localStorage.getItem('trygg_'+id)||'';
-        el.addEventListener('input',refreshCallLinks);
-      }
-    });
-  }
+window.dial = function(id){
+  const el = get(id);
+  const val = el ? el.value : localStorage.getItem(id);
+  const num = clean(val);
+  if(num) location.href="tel:"+num;
+  else alert("Skriv in nummer först");
+}
 
-  window.savePlan=function(){
-    fieldIds.forEach(id=>{
-      const el=document.getElementById(id);
-      if(el){
-        localStorage.setItem('trygg_'+id,el.value||'');
-      }
-    });
-  }
+function refresh(){
+  const p = get("psykiakuten")?.value || "";
+  const n = get("narstaende")?.value || "";
 
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',loadPlan);
-  } else loadPlan();
+  const cp = get("callPsykiakuten");
+  const cn = get("callNarstaende");
+
+  if(cp) cp.classList.toggle("disabled", !clean(p));
+  if(cn) cn.classList.toggle("disabled", !clean(n));
+}
+
+window.savePlan = function(){
+  fields.forEach(id=>{
+    const el = get(id);
+    if(el) localStorage.setItem(id, el.value||"");
+  });
+  refresh();
+}
+
+function load(){
+  fields.forEach(id=>{
+    const el = get(id);
+    if(el){
+      el.value = localStorage.getItem(id)||"";
+      el.addEventListener("input", refresh);
+    }
+  });
+  refresh();
+}
+
+document.addEventListener("DOMContentLoaded", load);
 
 })();
 </script>
