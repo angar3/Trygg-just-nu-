@@ -17,105 +17,51 @@
   --greenSoft:#e8f8ee;
   --yellowSoft:#fff4d7;
   --redSoft:#ffe9ee;
-  --purple:#b48cff;
   --purpleSoft:#f3ecff;
   --pinkSoft:#ffeef5;
 }
 
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-
-html,body{
-  margin:0;height:100%;
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Arial;
-  color:var(--ink);
-  background:
-    radial-gradient(circle at 12% 10%, rgba(170,206,255,.75), transparent 24%),
-    radial-gradient(circle at 84% 18%, rgba(245,191,255,.55), transparent 24%),
-    radial-gradient(circle at 30% 82%, rgba(188,248,218,.45), transparent 20%),
-    linear-gradient(180deg,#f8f7ff,#eef3ff 55%,#fbfcff);
-}
-
+html,body{margin:0;height:100%;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:linear-gradient(180deg,#f8f7ff,#eef3ff 55%,#fbfcff);}
 body{overflow:hidden}
+a{text-decoration:none;color:inherit}
 
-.pages{
-  height:100dvh;
-  display:flex;
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
-}
-
-.page{
-  flex:0 0 100%;
-  scroll-snap-align:start;
-  padding:18px;
-}
-
+.pages{height:100dvh;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;}
+.page{flex:0 0 100%;height:100dvh;scroll-snap-align:start;padding:18px 16px 24px;}
 .shell{max-width:440px;margin:0 auto;height:100%;display:flex;flex-direction:column;}
 
-.screen{
-  flex:1;
-  border-radius:38px;
-  background:rgba(255,255,255,.56);
-  border:1px solid rgba(255,255,255,.8);
-  backdrop-filter:blur(18px);
-  box-shadow:var(--shadow);
-  padding:22px;
-  overflow:auto;
-}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.circle{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;box-shadow:var(--shadow2);font-weight:900;}
 
-.hero{font-size:50px;font-weight:900;margin:10px 0}
-.title{font-size:34px;font-weight:900;margin:10px 0}
-.p{color:var(--muted)}
+.brand{text-align:center;flex:1}
+.brand .main{font-size:28px;font-weight:900}
+.brand .sub{font-size:14px;color:var(--muted)}
 
-.note{
-  margin:12px 0;
-  padding:16px;
-  border-radius:20px;
-  font-weight:700;
-  white-space:pre-wrap;
-}
+.screen{flex:1;overflow:auto;background:rgba(255,255,255,.6);backdrop-filter:blur(18px);border-radius:38px;padding:22px;box-shadow:var(--shadow)}
 
+.badge{display:inline-block;padding:10px 14px;border-radius:999px;font-weight:900}
 .green{background:var(--greenSoft)}
 .yellow{background:var(--yellowSoft)}
 .red{background:var(--redSoft)}
 
-.input{
-  width:100%;
+.note{margin-top:12px;padding:14px;border-radius:18px;font-weight:700}
+.note.green{background:var(--greenSoft)}
+.note.yellow{background:var(--yellowSoft)}
+.note.red{background:var(--redSoft)}
+
+.title{font-size:30px;font-weight:900;margin:10px 0}
+
+.item{padding:14px;border-radius:18px;background:#fff;margin-top:10px;border:1px solid #eee}
+
+/* KRISPLAN VISNING */
+.customBox{
+  margin-top:12px;
   padding:14px;
-  border-radius:16px;
-  border:1px solid var(--line);
-  margin:8px 0;
-  font-size:16px;
-}
-
-textarea.input{
-  min-height:90px;
-  resize:vertical;
-}
-
-button{
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:16px;
-  background:linear-gradient(135deg,#6b79ff,#b48cff);
-  color:#fff;
-  font-weight:900;
-}
-
-.card{padding:14px;border-radius:18px;background:rgba(255,255,255,.7);margin:10px 0}
-
-.help{
-  display:block;
-  text-align:center;
-  margin-top:18px;
-  padding:20px;
-  border-radius:30px;
-  background:linear-gradient(135deg,#6b79ff,#b48cff);
-  color:#fff;
-  font-size:22px;
-  font-weight:900;
+  border-radius:18px;
+  background:#fff;
+  border:1px solid #ddd;
+  display:none;
+  white-space:pre-wrap;
 }
 </style>
 </head>
@@ -127,58 +73,85 @@ button{
 <!-- START -->
 <section class="page">
 <div class="shell">
-<div class="screen">
-<div class="hero">Trygg just nu</div>
-<p class="p">Svep för att gå vidare</p>
+<div class="topbar">
+<div class="circle">☰</div>
+<div class="brand"><div class="main">Trygg just nu</div></div>
+<div class="circle">›</div>
 </div>
-</div>
-</section>
 
-<!-- KRISPLAN -->
-<section class="page">
-<div class="shell">
 <div class="screen">
+<div class="title">Hur känns det?</div>
 
-<div class="title">Min krisplan</div>
-
-<input id="psy" class="input" placeholder="Psykiakuten nummer">
-
-<textarea id="gron" class="input" placeholder="Grön zon - vad hjälper dig"></textarea>
-<textarea id="gul" class="input" placeholder="Gul zon - vad hjälper dig"></textarea>
-<textarea id="rod" class="input" placeholder="Röd zon - vad hjälper dig"></textarea>
-
-<button onclick="save()">Spara krisplan</button>
+<div class="item"><a href="#krisplan">📝 Min krisplan</a></div>
+<div class="item"><a href="#gron">🌿 Grön</a></div>
+<div class="item"><a href="#gul">🌤️ Gul</a></div>
+<div class="item"><a href="#rod">🔴 Röd</a></div>
 
 </div>
 </div>
 </section>
 
 <!-- GRÖN -->
-<section class="page">
+<section class="page" id="gron">
 <div class="shell">
+<div class="topbar"><div class="circle">‹</div><div class="brand"><div class="main">Grön zon</div></div><div class="circle">›</div></div>
+
 <div class="screen">
-<div class="title">🟢 Grön zon</div>
-<div id="outG" class="note green"></div>
+<div class="badge green">Grön</div>
+<div class="title">Du mår lite bättre</div>
+
+<div id="gronText" class="customBox"></div>
+
+<div class="note green">Gör något lugnt som hjälper dig.</div>
 </div>
 </div>
 </section>
 
 <!-- GUL -->
-<section class="page">
+<section class="page" id="gul">
 <div class="shell">
+<div class="topbar"><div class="circle">‹</div><div class="brand"><div class="main">Gul zon</div></div><div class="circle">›</div></div>
+
 <div class="screen">
-<div class="title">🟡 Gul zon</div>
-<div id="outY" class="note yellow"></div>
+<div class="badge yellow">Gul</div>
+<div class="title">Det börjar bli jobbigt</div>
+
+<div id="gulText" class="customBox"></div>
+
+<div class="note yellow">Ta en sak i taget.</div>
 </div>
 </div>
 </section>
 
 <!-- RÖD -->
-<section class="page">
+<section class="page" id="rod">
 <div class="shell">
+<div class="topbar"><div class="circle">‹</div><div class="brand"><div class="main">Röd zon</div></div><div class="circle">›</div></div>
+
 <div class="screen">
-<div class="title">🔴 Röd zon</div>
-<div id="outR" class="note red"></div>
+<div class="badge red">Röd</div>
+<div class="title">Akut läge</div>
+
+<div id="rodText" class="customBox"></div>
+
+<div class="note red">Säg till personal eller ring hjälp direkt.</div>
+</div>
+</div>
+</section>
+
+<!-- KRISPLAN -->
+<section class="page" id="krisplan">
+<div class="shell">
+<div class="topbar"><div class="circle">‹</div><div class="brand"><div class="main">Krisplan</div></div><div class="circle">⌂</div></div>
+
+<div class="screen">
+
+<input id="gulZonHjalp" class="item" placeholder="Vad hjälper i gul zon">
+<input id="gronZonHjalp" class="item" placeholder="Vad hjälper i grön zon">
+<input id="akutHjalp" class="item" placeholder="Vad hjälper i akut läge">
+
+<button class="item" onclick="save()">Spara</button>
+
 </div>
 </div>
 </section>
@@ -186,34 +159,38 @@ button{
 </div>
 
 <script>
-function load(){
-  ["psy","gron","gul","rod"].forEach(id=>{
-    document.getElementById(id).value =
-      localStorage.getItem(id) || "";
-  });
-  render();
-}
+const keys = ["gulZonHjalp","gronZonHjalp","akutHjalp"];
 
 function save(){
-  ["psy","gron","gul","rod"].forEach(id=>{
-    localStorage.setItem(id,
-      document.getElementById(id).value);
+  keys.forEach(k=>{
+    const el = document.getElementById(k);
+    localStorage.setItem(k, el.value || "");
   });
   render();
 }
 
 function render(){
-  document.getElementById("outG").textContent =
-    localStorage.getItem("gron") || "Inget skrivet";
+  const gul = localStorage.getItem("gulZonHjalp");
+  const gron = localStorage.getItem("gronZonHjalp");
+  const rod = localStorage.getItem("akutHjalp");
 
-  document.getElementById("outY").textContent =
-    localStorage.getItem("gul") || "Inget skrivet";
-
-  document.getElementById("outR").textContent =
-    localStorage.getItem("rod") || "Inget skrivet";
+  setBox("gulText", gul);
+  setBox("gronText", gron);
+  setBox("rodText", rod);
 }
 
-load();
+function setBox(id, text){
+  const el = document.getElementById(id);
+  if(!el) return;
+  if(text && text.trim() !== ""){
+    el.style.display = "block";
+    el.textContent = text;
+  } else {
+    el.style.display = "none";
+  }
+}
+
+render();
 </script>
 
 </body>
