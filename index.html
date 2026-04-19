@@ -3,36 +3,43 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Trygg just nu</title>
-
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#6b79ff">
+<title>Trygg just nu – swipe</title>
 
 <style>
 :root{
   --ink:#1d2440;
   --muted:#6f7997;
-  --glass:rgba(255,255,255,.55);
+  --white2:rgba(255,255,255,.92);
   --line:rgba(198,206,233,.5);
   --shadow:0 16px 38px rgba(80,96,180,.14);
-  --green:#e8f8ee;
-  --yellow:#fff4d7;
-  --red:#ffe9ee;
+  --shadow2:0 8px 22px rgba(80,96,180,.10);
   --blue:#6b79ff;
+  --greenSoft:#e8f8ee;
+  --yellowSoft:#fff4d7;
+  --redSoft:#ffe9ee;
+  --purple:#b48cff;
+  --purpleSoft:#f3ecff;
+  --pinkSoft:#ffeef5;
 }
 
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
-  background:linear-gradient(180deg,#f8f7ff,#eef3ff);
-  overflow:hidden;
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+
+html,body{
+  margin:0;height:100%;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Arial;
   color:var(--ink);
+  background:
+    radial-gradient(circle at 12% 10%, rgba(170,206,255,.75), transparent 24%),
+    radial-gradient(circle at 84% 18%, rgba(245,191,255,.55), transparent 24%),
+    radial-gradient(circle at 30% 82%, rgba(188,248,218,.45), transparent 20%),
+    linear-gradient(180deg,#f8f7ff,#eef3ff 55%,#fbfcff);
 }
+
+body{overflow:hidden}
 
 .pages{
+  height:100dvh;
   display:flex;
-  height:100vh;
   overflow-x:auto;
   scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;
@@ -41,163 +48,137 @@ body{
 .page{
   flex:0 0 100%;
   scroll-snap-align:start;
-  padding:16px;
+  padding:18px;
 }
 
-.shell{max-width:460px;margin:auto;height:100%;display:flex;flex-direction:column;}
+.shell{max-width:440px;margin:0 auto;height:100%;display:flex;flex-direction:column;}
 
-.glass{
+.screen{
   flex:1;
-  background:var(--glass);
+  border-radius:38px;
+  background:rgba(255,255,255,.56);
+  border:1px solid rgba(255,255,255,.8);
   backdrop-filter:blur(18px);
-  border-radius:32px;
-  border:1px solid rgba(255,255,255,.7);
   box-shadow:var(--shadow);
-  padding:18px;
+  padding:22px;
   overflow:auto;
 }
 
-h1{margin:0;font-size:34px}
-h2{margin:10px 0}
+.hero{font-size:50px;font-weight:900;margin:10px 0}
+.title{font-size:34px;font-weight:900;margin:10px 0}
+.p{color:var(--muted)}
 
-input,textarea{
+.note{
+  margin:12px 0;
+  padding:16px;
+  border-radius:20px;
+  font-weight:700;
+  white-space:pre-wrap;
+}
+
+.green{background:var(--greenSoft)}
+.yellow{background:var(--yellowSoft)}
+.red{background:var(--redSoft)}
+
+.input{
   width:100%;
-  margin:8px 0;
   padding:14px;
   border-radius:16px;
   border:1px solid var(--line);
-  font-size:15px;
+  margin:8px 0;
+  font-size:16px;
 }
 
-textarea{min-height:80px;resize:vertical}
+textarea.input{
+  min-height:90px;
+  resize:vertical;
+}
 
 button{
   width:100%;
   padding:14px;
   border:none;
-  border-radius:18px;
+  border-radius:16px;
   background:linear-gradient(135deg,#6b79ff,#b48cff);
   color:#fff;
   font-weight:900;
 }
 
-.nav{
-  display:flex;
-  gap:8px;
-  margin:10px 0;
-}
+.card{padding:14px;border-radius:18px;background:rgba(255,255,255,.7);margin:10px 0}
 
-.nav a{
-  flex:1;
+.help{
+  display:block;
   text-align:center;
-  padding:10px;
-  border-radius:14px;
-  background:rgba(255,255,255,.7);
-  text-decoration:none;
-  font-weight:800;
-}
-
-.zoneBox{
-  padding:14px;
-  border-radius:18px;
-  margin-top:10px;
-  white-space:pre-wrap;
-  font-weight:600;
-}
-
-.green{background:var(--green)}
-.yellow{background:var(--yellow)}
-.red{background:var(--red)}
-
-.fab{
-  position:fixed;
-  bottom:18px;
-  right:18px;
-  width:62px;
-  height:62px;
-  border-radius:50%;
-  background:#ff4d6d;
+  margin-top:18px;
+  padding:20px;
+  border-radius:30px;
+  background:linear-gradient(135deg,#6b79ff,#b48cff);
   color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:24px;
+  font-size:22px;
   font-weight:900;
-  box-shadow:0 10px 25px rgba(255,77,109,.4);
 }
 </style>
 </head>
 
 <body>
 
-<a class="fab" href="#r">⚡</a>
-
 <div class="pages">
 
 <!-- START -->
 <section class="page">
 <div class="shell">
-<div class="glass">
-<h1>Trygg just nu</h1>
-
-<div class="nav">
-<a href="#kris">Krisplan</a>
-<a href="#g">Grön</a>
-<a href="#y">Gul</a>
-<a href="#r">Röd</a>
-</div>
-
-<p>Dra sidled →</p>
+<div class="screen">
+<div class="hero">Trygg just nu</div>
+<p class="p">Svep för att gå vidare</p>
 </div>
 </div>
 </section>
 
 <!-- KRISPLAN -->
-<section class="page" id="kris">
+<section class="page">
 <div class="shell">
-<div class="glass">
+<div class="screen">
 
-<h2>Krisplan</h2>
+<div class="title">Min krisplan</div>
 
-<input id="psy" placeholder="Psykiakuten nummer">
+<input id="psy" class="input" placeholder="Psykiakuten nummer">
 
-<textarea id="gron" placeholder="Grön zon (det som hjälper)"></textarea>
-<textarea id="gul" placeholder="Gul zon (det som hjälper)"></textarea>
-<textarea id="rod" placeholder="Röd zon (det som hjälper)"></textarea>
+<textarea id="gron" class="input" placeholder="Grön zon - vad hjälper dig"></textarea>
+<textarea id="gul" class="input" placeholder="Gul zon - vad hjälper dig"></textarea>
+<textarea id="rod" class="input" placeholder="Röd zon - vad hjälper dig"></textarea>
 
-<button onclick="save()">Spara</button>
-<p id="msg"></p>
+<button onclick="save()">Spara krisplan</button>
 
 </div>
 </div>
 </section>
 
 <!-- GRÖN -->
-<section class="page" id="g">
+<section class="page">
 <div class="shell">
-<div class="glass">
-<h2>🟢 Grön zon</h2>
-<div id="outG" class="zoneBox green"></div>
+<div class="screen">
+<div class="title">🟢 Grön zon</div>
+<div id="outG" class="note green"></div>
 </div>
 </div>
 </section>
 
 <!-- GUL -->
-<section class="page" id="y">
+<section class="page">
 <div class="shell">
-<div class="glass">
-<h2>🟡 Gul zon</h2>
-<div id="outY" class="zoneBox yellow"></div>
+<div class="screen">
+<div class="title">🟡 Gul zon</div>
+<div id="outY" class="note yellow"></div>
 </div>
 </div>
 </section>
 
 <!-- RÖD -->
-<section class="page" id="r">
+<section class="page">
 <div class="shell">
-<div class="glass">
-<h2>🔴 Röd zon</h2>
-<div id="outR" class="zoneBox red"></div>
+<div class="screen">
+<div class="title">🔴 Röd zon</div>
+<div id="outR" class="note red"></div>
 </div>
 </div>
 </section>
@@ -207,43 +188,32 @@ button{
 <script>
 function load(){
   ["psy","gron","gul","rod"].forEach(id=>{
-    document.getElementById(id).value = localStorage.getItem(id)||"";
+    document.getElementById(id).value =
+      localStorage.getItem(id) || "";
   });
   render();
 }
 
 function save(){
   ["psy","gron","gul","rod"].forEach(id=>{
-    localStorage.setItem(id,document.getElementById(id).value);
+    localStorage.setItem(id,
+      document.getElementById(id).value);
   });
   render();
-  document.getElementById("msg").textContent="Sparat ✔";
 }
 
 function render(){
   document.getElementById("outG").textContent =
-    localStorage.getItem("gron") || "Ingen text";
+    localStorage.getItem("gron") || "Inget skrivet";
 
   document.getElementById("outY").textContent =
-    localStorage.getItem("gul") || "Ingen text";
+    localStorage.getItem("gul") || "Inget skrivet";
 
   document.getElementById("outR").textContent =
-    localStorage.getItem("rod") || "Ingen text";
+    localStorage.getItem("rod") || "Inget skrivet";
 }
-
-/* 🔥 extra trygghet */
-function vibe(){
-  if(navigator.vibrate) navigator.vibrate(80);
-}
-
-document.addEventListener("click", vibe);
 
 load();
-
-/* PWA */
-if("serviceWorker" in navigator){
-  navigator.serviceWorker.register("sw.js");
-}
 </script>
 
 </body>
